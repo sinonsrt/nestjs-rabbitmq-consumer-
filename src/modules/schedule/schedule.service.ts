@@ -3,11 +3,11 @@ import { CreateScheduleDto } from './dto/create-schedule.dto';
 
 @Injectable()
 export class ScheduleService {
-  create(createScheduleDto: CreateScheduleDto) {
+  async create(createScheduleDto: CreateScheduleDto) {
     return 'This action adds a new schedule';
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return `This action removes a #${id} schedule`;
   }
 }

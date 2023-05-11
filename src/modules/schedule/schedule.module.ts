@@ -3,7 +3,8 @@ import { ScheduleService } from './schedule.service';
 import { ScheduleController } from './schedule.controller';
 
 @Module({
+  imports: [],
   controllers: [ScheduleController],
-  providers: [ScheduleService]
+  providers: [ScheduleService],
 })
 export class ScheduleModule {}

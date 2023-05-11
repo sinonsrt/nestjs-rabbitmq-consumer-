@@ -9,7 +9,6 @@ export class ScheduleController {
 
   @EventPattern('createSchedule')
   create(@Payload() createScheduleDto: CreateScheduleDto) {
-    console.log(createScheduleDto);
     return this.scheduleService.create(createScheduleDto);
   }
 
