@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { EventPattern, Payload } from '@nestjs/microservices';
 import { ScheduleService } from './schedule.service';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 
@@ -7,13 +7,13 @@ import { CreateScheduleDto } from './dto/create-schedule.dto';
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
 
-  @MessagePattern('createSchedule')
+  @EventPattern('createSchedule')
   create(@Payload() createScheduleDto: CreateScheduleDto) {
     console.log(createScheduleDto);
     return this.scheduleService.create(createScheduleDto);
   }
 
-  @MessagePattern('removeSchedule')
+  @EventPattern('removeSchedule')
   remove(@Payload() id: number) {
     return this.scheduleService.remove(id);
   }
