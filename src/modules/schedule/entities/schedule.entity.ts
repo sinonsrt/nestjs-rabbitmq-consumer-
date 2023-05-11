@@ -2,9 +2,13 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
+  Relation,
 } from 'typeorm';
+import { User } from './user.entity';
+import { Cart } from './cart.entity';
 
 @Entity()
 export class Schedule {
@@ -20,20 +24,9 @@ export class Schedule {
   @Column({ default: new Date() })
   updated_at: Date;
 
-  @OneToOne((type) => Cart)
-  cart: Cart;
+  @OneToOne(() => Cart, (cart) => cart.id)
+  cart: Relation<Cart>;
 
-  @OneToOne((type) => User)
-  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
-  user: User;
-}
-
-export class Cart {
-  @PrimaryGeneratedColumn()
-  id: number;
-}
-
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @ManyToOne(() => User, (user) => user.schedule)
+  user: Relation<User>;
 }
